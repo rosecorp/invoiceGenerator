@@ -1,10 +1,15 @@
-command line Scala app to generate invoices in pdf
+Command line Scala app to generate invoices in pdf
 
 The data for the invoice is coming from:
+
  - payee.json: person been paid
+ 
  - payer.json: basic information from the company being given the invoice
+ 
  - pdf-details.properties: contains the the naming of the pdf that will be generated
+ 
  - days worked: first argument from the command line execution
+ 
  - invoice number: second argument entered.
 
  
