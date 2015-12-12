@@ -15,6 +15,8 @@ object GeneratePdf extends AppConfig {
     val daysWorked = args(0).toInt
     val invoiceNumber = args(1).toInt
 
+//    val company = new CompanyService
+
     val payee = Json.parse(newInputStream(Paths.get(externalPath+"payee.json"))).as[Company]
     val payer = Json.parse(newInputStream(Paths.get(externalPath+"payer.json"))).as[CompanyBasic]
 
