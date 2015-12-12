@@ -24,7 +24,8 @@ libraryDependencies ++= {
     "com.typesafe.akka"   %%  "akka-actor"    % akkaV,
     "com.typesafe.akka"   %%  "akka-testkit"  % akkaV   % "test",
     "org.specs2"          %%  "specs2-core"   % "2.3.11" % "test",
-    "io.github.cloudify" %% "spdf" % "1.3.1",
-    "com.typesafe.play" %% "play-json" % "2.4.2"
+    "org.xhtmlrenderer"   %   "flying-saucer-core" % "9.0.8",
+    "org.xhtmlrenderer"   % "flying-saucer-pdf" % "9.0.8",
+    "com.typesafe.play" %%    "play-json"     % "2.4.2"
   )
 }

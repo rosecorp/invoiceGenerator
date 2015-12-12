@@ -14,11 +14,11 @@ object HtmlBuilder {
     val elem: Elem = <html>
       <body>
         <p align="right" width="16%" style="font-size:medium;font-family:sans-serif">Invoice No. SC00000000{invoice.number}</p>
-        <p style="font-size:18px;font-family:sans-serif">{invoice.payee.basicData.name}</p>
+        <p style="font-size:20px;font-family:sans-serif">{invoice.payee.basicData.name}</p>
 
         <p style="font-size:11px;font-family:sans-serif;margin-top:-1.5em;vertical-align=top">{invoice.payee.basicData.address} Postcode {invoice.payee.basicData.postCode}</p>
         <hr style="border-style=double" />
-        <p style="font-size:14px;font-family:sans-serif;margin:0em" align="right"> Date {invoice.prettyDate}</p>
+        <p style="font-size:14px;font-family:sans-serif" align="right"> Date {invoice.prettyDate}</p>
         <div width="100%">
           <table width="60%" style="font-family:sans-serif;border:1px solid black;border-radius:10px;-moz-border-radius:10px">
             <tr>
@@ -26,13 +26,13 @@ object HtmlBuilder {
                 <table width="100%">
                   <td><b>customer</b></td>
                   <tr>
-                    <td><p style="font-size:12px">Name &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {invoice.payer.name}</p></td>
+                    <td><p style="font-size:14px">Name {invoice.payer.name}</p></td>
                   </tr>
                   <tr>
-                    <td><p style="font-size:12px">Address &nbsp; &nbsp; &nbsp; {invoice.payer.address}</p></td>
+                    <td><p style="font-size:14px">Address    {invoice.payer.address}</p></td>
                   </tr>
                   <tr>
-                    <td><p style="font-size:12px">Postcode &nbsp; &nbsp; {invoice.payer.postCode}</p></td>
+                    <td><p style="font-size:14px">Postcode   {invoice.payer.postCode}</p></td>
                   </tr>
                 </table>
               </td>
@@ -50,7 +50,7 @@ object HtmlBuilder {
 
           <tr style="height:230px;vertical-align:top">
             <td>{invoice.daysWorked}</td>
-            <td style="text-align:left">&nbsp;{invoice.payee.description}</td>
+            <td style="text-align:left">{invoice.payee.description}</td>
             <td>£{formatter.format(invoice.amountToPayPerDay)}</td>
             <td>£{formatter.format(invoice.totalWithoutVat)}</td>
           </tr>
@@ -79,13 +79,13 @@ object HtmlBuilder {
             <td style="vertical-align:top">
               <table width="100%" style="font-size:14px;font-family:sans-serif" align="right">
                 <tr>
-                  <td>SubTotal &nbsp; &nbsp; £{formatter.format(invoice.totalWithoutVat)}</td>
+                  <td>SubTotal</td><td>   £{formatter.format(invoice.totalWithoutVat)}</td>
                 </tr>
                 <tr>
-                  <td> VAT &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; £{formatter.format(invoice.totalVat)}</td>
+                  <td> VAT</td><td>     £{formatter.format(invoice.totalVat)}</td>
                 </tr>
                 <tr>
-                  <td><b>TOTAL</b> &nbsp; &nbsp; &nbsp; £{formatter.format(invoice.total)}</td>
+                  <td><b>TOTAL</b></td><td>  £{formatter.format(invoice.total)}</td>
                 </tr>
               </table>
             </td>

@@ -1,17 +1,19 @@
 package com.seon.invoicer.services
 
-import io.github.cloudify.scala.spdf.{Pdf, PdfConfig, Portrait}
+import java.io.{File, FileWriter}
+
+import org.xhtmlrenderer.simple.PDFRenderer
+
+import scala.xml.Elem
 
 object PdfBuilder {
 
-  def getSimplePdf:Pdf = {
-    Pdf(new PdfConfig {
-      orientation := Portrait
-      pageSize := "Letter"
-      marginTop := "1in"
-      marginBottom := "1in"
-      marginLeft := "1in"
-      marginRight := "1in"
-    })
+  def generatePdf(html: Elem, pdfName:String): Unit = {
+    val file = new File("htmlFile")
+    val fileW = new FileWriter(file)
+    fileW.write(html.mkString)
+    fileW.close()
+
+    PDFRenderer.renderToPDF(file, pdfName)
   }
 }

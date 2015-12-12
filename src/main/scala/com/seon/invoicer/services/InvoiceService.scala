@@ -1,8 +1,8 @@
 package com.seon.invoicer.services
 
-import java.io.File
-
 import com.seon.invoicer.model.{Company, CompanyBasic, Invoice}
+
+import scala.xml.Elem
 
 
 class InvoiceService(pdfName:String, payee:Company, payer:CompanyBasic) {
@@ -10,8 +10,8 @@ class InvoiceService(pdfName:String, payee:Company, payer:CompanyBasic) {
   def generatePDF(daysWorked:Int, invoiceNumber:Int) {
 
     val invoice = Invoice(invoiceNumber,payee, payer, daysWorked, payee.dailyRate)
-    val htmlInvoice = HtmlBuilder.makeHtmlInvoice(invoice)
+    val htmlInvoice: Elem = HtmlBuilder.makeHtmlInvoice(invoice)
 
-    PdfBuilder.getSimplePdf.run(htmlInvoice, new File(pdfName))
+    PdfBuilder.generatePdf(htmlInvoice, pdfName)
   }
 }
