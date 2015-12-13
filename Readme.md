@@ -1,7 +1,12 @@
 Command line Scala app to generate invoices in pdf
 
-An example of the json structure is under resources.
-Resources will be loaded from specified location in the properties file.
+The example of the json structures are under resources.
+ - payee.json
+ - payer.json
+ - pdf-details.properties // prefix, suffix for the pdf name and the location where the pdf will be created.
+ 
+Resources will be loaded from the location specified in the config.properties file.
+If no config is found there the pdf will be generated using the default files under resources.
 
 The data for the invoice is coming from:
 

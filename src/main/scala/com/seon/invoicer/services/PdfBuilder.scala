@@ -15,5 +15,6 @@ object PdfBuilder {
     fileW.close()
 
     PDFRenderer.renderToPDF(file, pdfName)
+    file.delete()
   }
 }

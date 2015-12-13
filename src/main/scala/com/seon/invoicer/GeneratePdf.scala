@@ -1,12 +1,9 @@
 package com.seon.invoicer
 
-import java.nio.file.Files.newInputStream
-import java.nio.file.Paths
+import java.nio.file.{Paths, Files}
 
 import com.seon.invoicer.config.AppConfig
-import com.seon.invoicer.model.{Company, CompanyBasic}
-import com.seon.invoicer.services.InvoiceService
-import play.api.libs.json.Json
+import com.seon.invoicer.services.{CompanyService, InvoiceService}
 
 object GeneratePdf extends AppConfig {
 
@@ -15,15 +12,14 @@ object GeneratePdf extends AppConfig {
     val daysWorked = args(0).toInt
     val invoiceNumber = args(1).toInt
 
-//    val company = new CompanyService
+    val company = new CompanyService
 
-    val payee = Json.parse(newInputStream(Paths.get(externalPath+"payee.json"))).as[Company]
-    val payer = Json.parse(newInputStream(Paths.get(externalPath+"payer.json"))).as[CompanyBasic]
-
-    val service:InvoiceService = new InvoiceService(makePdfName(invoiceNumber), payee, payer)
+    val service = new InvoiceService(makePdfName(invoiceNumber), company.makePayee(), company.makePayer())
     service.generatePDF(daysWorked, invoiceNumber)
   }
 
-  def makePdfName(invoiceNumber:Int):String = s"$fileNamePrefix $invoiceNumber$fileNameSuffix"
-
+  def makePdfName(invoiceNumber:Int):String = {
+    if (Files.exists(Paths.get(pdfPath))) s"$pdfPath/$fileNamePrefix$invoiceNumber $fileNameSuffix"
+    else s"$fileNamePrefix$invoiceNumber $fileNameSuffix"
+  }
 }
